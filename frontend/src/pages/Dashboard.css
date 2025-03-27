@@ -1,0 +1,303 @@
+.dashboard-container {
+    width: 100%;
+    min-height: 100h;
+    overflow: hidden;
+  }
+  
+  .page-switch {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .page-switch button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #ff4d4d;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .page-switch .active {
+    background-color: #cc0000;
+  }
+  
+  .pages {
+    display: flex;
+    min-height: 100h;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .page {
+    min-width: 100%;
+    padding: 20px;
+     min-height: 100h;
+    text-align: center;
+    background: linear-gradient(to bottom, #ff6666, #ff4d4d);
+    border-radius: 10px;
+  }
+  
+  /* Donor Section */
+  .donor-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .donor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px; /* Adjust width as needed */
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .donor-form input,
+  .donor-form select,
+  .donor-form button {
+    width: 100%; /* Ensure elements take full width */
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box; /* Prevents extra width from padding */
+  }
+  
+  .donor-form button {
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .donor-form button:hover {
+    background: #218838;
+  }
+  
+  /* Donor List */
+  .donor-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .donor-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Availability & Donate Buttons */
+  .availability-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .available {
+    background: green;
+    color: white;
+  }
+  
+  .unavailable {
+    background: red;
+    color: white;
+  }
+  
+  .donate-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .donate-btn:hover {
+    background: #218838;
+  }
+  
+  .donated {
+    background: gray;
+    cursor: not-allowed;
+  }
+  
+  .chat-section {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px; /* Ensures space between form and chat */
+  }
+  
+  .chat-toggle-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Space between icon and text */
+  }
+  
+  .chat-toggle-btn img {
+    width: 18px;
+    height: 18px;
+  }
+  /* 🔥 Plasma Donor Badge */
+.plasma-badge {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff4b1f, #ff9068);
+  color: white;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.plasma-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 12px rgba(255, 72, 0, 0.5);
+}
+
+/* 🏅 Donor Badge */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+ /* Plasma Donation Matching Rules - Improved Design */
+/* Plasma Donation Matching Rules - Modern UI */
+.plasma-poster {
+  max-width: 650px;
+  background: linear-gradient(135deg, #ff6a88, #ff3b6b); /* Smooth red-pink gradient */
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  margin: 40px auto 20px; /* Increased top margin to push it down */
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1; /* Keeps it under other elements */
+}
+
+.plasma-poster:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Increased spacing from other elements */
+.plasma-container {
+  padding-top: 30px; /* Push the table slightly downward */
+}
+
+/* Table Styling */
+.plasma-poster table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px; /* Ensures spacing */
+}
+
+/* Header Styling */
+.plasma-poster th {
+  background: linear-gradient(135deg, #ff3b6b, #ff758c);
+  color: white;
+  font-weight: bold;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+
+/* Row Styling */
+.plasma-poster tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease-in-out;
+}
+
+.plasma-poster tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.25);
+  transition: background 0.3s ease-in-out;
+}
+
+/* Hover effect (but limits growth to prevent overlap) */
+.plasma-poster tr:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.005); /* Slight scale effect without too much growth */
+}
+
+/* Table Cells */
+.plasma-poster td {
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+}
+
+/* Highlighted Cells */
+.universal-donor {
+  background: linear-gradient(135deg, #4caf50, #8bc34a); /* Green */
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.universal-recipient {
+  background: linear-gradient(135deg, #ff9800, #ffb74d); /* Orange */
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .plasma-poster {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .plasma-poster h3 {
+    font-size: 1.3rem;
+  }
+
+  .plasma-poster th,
+  .plasma-poster td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

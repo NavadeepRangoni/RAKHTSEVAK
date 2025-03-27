@@ -1,0 +1,64 @@
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  input,
+  button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+  }
+  
+  /* Forced Colors Mode for High Contrast (Modern Replacement for -ms-high-contrast) */
+  @media (forced-colors: active) {
+    body {
+      background-color: Canvas;      /* Uses system color for backgrounds */
+      color: CanvasText;             /* Uses system color for text */
+    }
+    
+    form {
+      background-color: Canvas;
+      border: 1px solid Highlight;   /* Use system highlight color for borders */
+      box-shadow: none;              /* Remove shadow for clarity in forced colors */
+    }
+    
+    input,
+    button {
+      border: 1px solid ButtonText;  /* Use system button text color for borders */
+    }
+    
+    button {
+      background-color: Highlight;   /* Use the system highlight color for buttons */
+      color: ButtonText;             /* Ensure the button text is readable */
+    }
+    
+    button:disabled {
+      background-color: GrayText;    /* System color for disabled elements */
+      color: ButtonText;
+    }
+  }
+  

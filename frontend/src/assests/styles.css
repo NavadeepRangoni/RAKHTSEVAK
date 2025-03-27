@@ -1,0 +1,37 @@
+/* 🌟 Global Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #ff416c, #ff4b2b); /* Modern Gradient */
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🌟 Button Styling */
+button {
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+
+/* 🌟 Card Design */
+.donor-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.donor-card:hover {
+  transform: scale(1.03);
+}

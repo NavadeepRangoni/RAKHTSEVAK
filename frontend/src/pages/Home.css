@@ -1,0 +1,200 @@
+/* Home.css */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(255, 23, 68, 0.7)),
+                url('https://images.unsplash.com/photo-1615461066841-6116e61058f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 150px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section h1 {
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-section .lead {
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Phone Mockup */
+  .phone-container {
+    position: relative;
+    max-width: 300px;
+    margin: 50px auto;
+    border: 12px solid #333;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 25px;
+    background: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .phone-screen {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .phone-content {
+    padding: 40px 15px 20px;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .phone-content .fa-heart-pulse {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  /* Blood Type Grid */
+  .blood-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .blood-type-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+  
+  .blood-type-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    transition: 0.5s;
+    z-index: 1;
+  }
+  
+  .blood-type-card:hover::before {
+    top: 0;
+  }
+  
+  .blood-type-card h4,
+  .blood-type-card p {
+    position: relative;
+    z-index: 2;
+    transition: 0.5s;
+    margin: 0;
+  }
+  
+  .blood-type-card:hover h4,
+  .blood-type-card:hover p {
+    color: white;
+  }
+  
+  /* Feature Cards */
+  .feature-card {
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(10deg);
+  }
+  
+  /* Stats Section */
+  .stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 15px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 23, 68, 0.1));
+    transform: translateY(100%);
+    transition: 0.5s;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 23, 68, 0.2);
+    border-color: var(--accent-color);
+  }
+  
+  .stat-card:hover::before {
+    transform: translateY(0);
+  }
+  
+  .stat-card i {
+    transition: all 0.5s ease;
+    color: var(--primary-color);
+  }
+  
+  .stat-card:hover i {
+    transform: scale(1.2) rotate(10deg);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 100px 0;
+    }
+    
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+  
+    .phone-container {
+      max-width: 280px;
+      margin: 30px auto;
+    }
+  
+    .stat-card {
+      margin: 10px 0;
+    }
+  }

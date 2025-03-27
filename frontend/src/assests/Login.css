@@ -1,0 +1,95 @@
+/* 🌟 Apply a full-screen gradient background */
+body {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* 🌟 Glassmorphism Effect for Login Card */
+  .login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .login-container:hover {
+    transform: scale(1.02);
+  }
+  
+  /* 🌟 Heading Styling */
+  .login-container h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* 🌟 Input Fields */
+  .login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .login-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .login-container input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+  
+  /* 🌟 Login Button */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4b2b;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background: #ff416c;
+    transform: scale(1.05);
+  }
+  
+  /* 🌟 Register Link */
+  .register-link {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .register-link button {
+    background: none;
+    border: none;
+    color: #ffb3b3;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .register-link button:hover {
+    color: #ffffff;
+  }
+  
