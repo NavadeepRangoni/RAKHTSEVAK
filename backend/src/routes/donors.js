@@ -4,99 +4,112 @@ const Donor = require("../models/Donor");
 const Recipient = require("../models/Recipient");
 const sendSMS = require("../utils/sendSMS");
 
-// Dummy Email Sending Function (Replace with real email service)
+// Dummy Email Function
 const sendEmail = async (email, subject, message) => {
-  console.log(`📩 Sending email to ${email}: ${subject} - ${message}`);
+  console.log(`📩 Email sent to ${email}: ${subject} - ${message}`);
 };
 
-// Function to notify recipient
+// Notify recipient via SMS or email
 const notifyRecipient = async (recipient) => {
   try {
-    if (recipient.contact) {
-      await sendSMS(recipient.contact, "A matching donor is available for your request!");
-    }
-    if (recipient.email) {
-      await sendEmail(recipient.email, "Organ Donor Found!", "A matching donor is available near you!");
-    }
+    if (recipient.contact) await sendSMS(recipient.contact, "A matching donor is available!");
+    if (recipient.email) await sendEmail(recipient.email, "Donor Found!", "A matching donor is nearby.");
   } catch (error) {
-    console.error("❌ Error sending notification:", error);
+    console.error("❌ Notification error:", error);
   }
 };
 
-// ✅ Register a new donor
+// ✅ Register new donor
 router.post("/", async (req, res) => {
   try {
-    const { name, bloodType, city, contact } = req.body;
+    const { name, bloodType, city, contact, plasmaDonor } = req.body;
     if (!name || !bloodType || !city || !contact) {
       return res.status(400).json({ message: "❌ All fields are required." });
     }
 
-    const newDonor = new Donor({ name, bloodType, city, contact, available: true });
+    const newDonor = new Donor({
+      name,
+      bloodType,
+      city,
+      contact,
+      plasmaDonor: plasmaDonor || false,
+      available: true,
+      donated: false,
+      donationCount: 0,
+    });
+
     await newDonor.save();
 
-    // Check if any recipient is waiting for this blood type in the same city
     const matchedRecipient = await Recipient.findOne({ bloodType, city });
-
-    if (matchedRecipient) {
-      await notifyRecipient(matchedRecipient);
-      console.log("✅ Recipient notified successfully!");
-    }
+    if (matchedRecipient) await notifyRecipient(matchedRecipient);
 
     res.status(201).json({ message: "✅ Donor registered successfully!", donor: newDonor });
   } catch (error) {
-    console.error("❌ Error registering donor:", error.message);
+    console.error("❌ Registration error:", error.message);
     res.status(500).json({ message: "❌ Server error", error: error.message });
   }
 });
 
-// ✅ Fetch all donors
+// ✅ Get all donors
 router.get("/", async (req, res) => {
   try {
     const donors = await Donor.find();
     res.json(donors);
   } catch (error) {
-    console.error("❌ Error fetching donors:", error.message);
+    console.error("❌ Fetch error:", error.message);
     res.status(500).json({ message: "❌ Server error", error: error.message });
   }
 });
 
-// ✅ Mark donor as donated (Updated Logic)
+// ✅ Donate endpoint (with 2-month restriction)
 router.put("/:id/donate", async (req, res) => {
   try {
-    const { donationDate } = req.body;
-    const updatedDonor = await Donor.findByIdAndUpdate(
-      req.params.id,
-      { donated: true, donationDate, available: false }, 
-      { plasmaDonor: req.body.plasmaDonor },// Mark as unavailable too
-      { new: true } // Return updated donor
-    );
+    const donor = await Donor.findById(req.params.id);
+    if (!donor) return res.status(404).json({ message: "❌ Donor not found." });
 
-    if (!updatedDonor) {
-      return res.status(404).json({ message: "❌ Donor not found." });
+    const now = new Date();
+
+    // Check if 2 months passed since last donation
+    if (donor.donationDate) {
+      const lastDate = new Date(donor.donationDate);
+      const diffInDays = Math.floor((now - lastDate) / (1000 * 60 * 60 * 24));
+      if (diffInDays < 60) {
+        return res.status(403).json({
+          message: `❌ Donor must wait ${60 - diffInDays} more day(s) to donate again.`,
+        });
+      }
     }
 
-    res.json(updatedDonor); // Send updated donor data
+    // Update donation info
+    donor.donationDate = now;
+    donor.donated = true;
+    donor.available = false;
+    donor.donationCount += 1;
+
+    await donor.save();
+
+    res.json({ message: "✅ Donation recorded.", donor });
   } catch (error) {
-    console.error("❌ Error updating donation status:", error);
+    console.error("❌ Donation error:", error.message);
     res.status(500).json({ message: "❌ Server error", error: error.message });
   }
 });
 
-
-// ✅ Toggle Donor Availability
+// ✅ Toggle availability
 router.put("/:id/toggle-availability", async (req, res) => {
   try {
-    const { id } = req.params;
-    const donor = await Donor.findById(id);
-
+    const donor = await Donor.findById(req.params.id);
     if (!donor) return res.status(404).json({ message: "❌ Donor not found." });
 
-    donor.available = !donor.available; // Toggle availability
+    donor.available = !donor.available;
     await donor.save();
 
-    res.json({ message: `✅ Donor availability updated to ${donor.available ? "Available 🟢" : "Unavailable 🔴"}`, donor });
+    res.json({
+      message: `✅ Donor availability is now ${donor.available ? "Available 🟢" : "Unavailable 🔴"}`,
+      donor,
+    });
   } catch (error) {
-    console.error("❌ Error toggling availability:", error.message);
+    console.error("❌ Toggle error:", error.message);
     res.status(500).json({ message: "❌ Server error", error: error.message });
   }
 });

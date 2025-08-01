@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   const fetchDonors = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/donors");
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors`);
       setDonors(response.data);
 
       const availabilityData = {};
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const handleRegisterDonor = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/donors", newDonor);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors`, newDonor);
       setDonors([...donors, response.data]); 
       setNewDonor({ name: "", bloodType: "", city: "", contact: "",plasmaDonor: false });
     } catch (error) {
@@ -54,7 +54,7 @@ const Dashboard = () => {
     const donationDate = new Date().toISOString();
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/donors/${donorId}/donate`, {
+      const response = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors/${donorId}/donate`, {
         donationDate,
       });
 
@@ -77,7 +77,7 @@ const Dashboard = () => {
     }));
 
     try {
-      await axios.put(`http://localhost:5000/api/donors/${donorId}/availability`, {
+      await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors/${donorId}/availability`, {
         available: updatedAvailability,
       });
     } catch (error) {
@@ -135,7 +135,7 @@ const Dashboard = () => {
               <input type="text" placeholder="Contact Number" value={newDonor.contact} onChange={(e) => setNewDonor({ ...newDonor, contact: e.target.value })} required />
               <label className="checkbox-container">
                 <input type="checkbox" name="plasmaDonor" checked={newDonor.plasmaDonor} onChange={(e) => setNewDonor({ ...newDonor, plasmaDonor: e.target.checked })} />
-                Register as Plasma Donor
+                🧬 Register as Plasma Donor
               </label>
               <button type="submit">Register as Donor</button>
             </form>
@@ -192,7 +192,7 @@ const Dashboard = () => {
           <div className="donor-list">
             {filteredDonors.map((donor) => (
               <div className="donor-card" key={donor._id}>
-                <p>📍 {donor.city} | 🩸 {donor.bloodType} | 📞 {donor.contact} | 👤 {donor.name}</p>
+                <p>📍 {donor.city} | 🩸 {donor.bloodType} | 📞 {donor.contact} | 👤 {donor.name} {donor.plasmaDonor && "🧬"}</p>
 
                 <button className={`availability-btn ${donorAvailability[donor._id] ? "available" : "unavailable"}`} onClick={() => handleToggleAvailability(donor._id)}>
                   {donorAvailability[donor._id] ? "Available" : "Unavailable"}

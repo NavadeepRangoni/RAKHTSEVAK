@@ -8,7 +8,7 @@ const DonorList = () => {
   useEffect(() => {
     const fetchDonors = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/donors", {
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors`, {
           headers: { "Cache-Control": "no-cache" },
         });
         console.log("✅ Fetched Donors:", response.data); // Adjust API URL if needed
@@ -26,7 +26,7 @@ const DonorList = () => {
     try {
       console.log("🔄 Sending plasma donor update request for ID:", donorId);
 
-      const response = await axios.post("http://localhost:5000/api/donors/plasma-donors", {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors/plasma-donors`, {
         donorId,
       });
 
@@ -53,7 +53,7 @@ const DonorList = () => {
             key={donor._id}
             className="bg-white p-5 rounded-xl shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-2xl"
           >
-            <h3 className="text-lg font-semibold text-gray-800">👤 {donor.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-800">👤 {donor.name}{donor.plasmaDonor && "🧬"}</h3>
             <p className="text-sm text-gray-600">
               🩸 Blood Type: <span className="font-bold text-red-500">{donor.bloodType}</span>
             </p>

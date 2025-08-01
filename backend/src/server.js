@@ -16,17 +16,6 @@ const io = socketIo(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log("🔌 New client connected:", socket.id);
-
-  socket.on("sendMessage", (messageData) => {
-    io.emit("receiveMessage", messageData);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("❌ Client disconnected:", socket.id);
-  });
-});
 
 // ✅ 1. Dynamic CORS Handling
 app.use(

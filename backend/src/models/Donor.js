@@ -5,14 +5,15 @@ const donorSchema = new mongoose.Schema({
   bloodType: { type: String, required: true },
   city: { type: String, required: true },
   contact: { type: String, required: true },
-  donated: { type: Boolean, default: false }, // ✅ Tracks donation status
-  donationCount: { type: Number, default: 0 },  // ✅ Tracks number of donations
-  badge: { type: String, default: 'New Donor' }, 
+  donated: { type: Boolean, default: false },
+  donationCount: { type: Number, default: 0 },
+  badge: { type: String, default: 'New Donor' },
   available: { type: Boolean, default: true },
-  plasmaDonor: { type: Boolean, default: false },// ✅ Assigns donor badge
+  plasmaDonor: { type: Boolean, default: false },
+  donationDate: { type: Date }, // ✅ Track last donation date
 });
 
-// Function to get badge based on donation count
+// Badge calculation logic
 const getBadge = (donationCount) => {
   if (donationCount >= 10) return 'Gold Donor';
   if (donationCount >= 5) return 'Silver Donor';
@@ -20,11 +21,10 @@ const getBadge = (donationCount) => {
   return 'New Donor';
 };
 
-// Middleware to update badge before saving donor data
-donorSchema.pre('save', function (next) {
+// Middleware to update badge
+donorSchema.pre("save", function (next) {
   this.badge = getBadge(this.donationCount);
   next();
 });
 
-const Donor = mongoose.model("Donor", donorSchema);
-module.exports = Donor;
+module.exports = mongoose.model("Donor", donorSchema);

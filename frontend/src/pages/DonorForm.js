@@ -36,7 +36,7 @@ const DonorForm = ({ onDonorAdded }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/donors", {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/donors`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -106,7 +106,7 @@ const DonorForm = ({ onDonorAdded }) => {
       {/* ✅ Plasma Donor Checkbox */}
       <label>
         <input type="checkbox" name="plasmaDonor" checked={formData.plasmaDonor} onChange={handleChange} />
-        Register as Plasma Donor
+        🧬 Register as Plasma Donor
       </label>
 
       <button type="submit">Submit</button>

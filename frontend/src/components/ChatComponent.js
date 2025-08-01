@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
 
-const socket = io("http://localhost:5000"); // ✅ Adjust backend URL if needed
+const socket = io(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}`); // ✅ Adjust backend URL if needed
 
 const ChatComponent = () => {
   const [message, setMessage] = useState("");

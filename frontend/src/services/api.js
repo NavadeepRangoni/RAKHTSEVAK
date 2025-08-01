@@ -1,18 +1,19 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api"; // Ensure this matches your backend URL
+const API_URL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api`;
 
-// Fetch all donor posts
+// ✅ Fetch donors (or adjust endpoint as needed)
 export const fetchPosts = async () => {
   try {
-    return await axios.get("http://localhost:5000/api/users/register",userdata);
+    const response = await axios.get(`${API_URL}/donors`); // Change this endpoint to match your backend route
+    return response.data;
   } catch (error) {
     console.error("❌ Error fetching posts:", error.response?.data || error.message);
     throw error;
   }
 };
 
-// Register a new user
+// ✅ Register a new user
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users/register`, userData);
@@ -23,7 +24,7 @@ export const registerUser = async (userData) => {
   }
 };
 
-// Login a user
+// ✅ Login a user
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users/login`, userData);
